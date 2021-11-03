@@ -1,0 +1,32 @@
+:root {
+    /* todo: clamp the value / media query for mobile */
+    --cell-size: 30px;
+}
+
+.tetris {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tetris .grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: calc(20 * var(--cell-size));
+    width: calc(12 * var(--cell-size));
+    border: solid var(--a-color);
+}
+
+.tetris .tile {
+    background-color: var(--square-color);
+    height: calc(var(--cell-size) - 2px);
+    width: calc(var(--cell-size) - 2px);
+
+    border: solid 1px var(--a-color);
+}
+
+/* temporary, for testing purposes */
+.tetris .tile:hover {
+    background-color: var(--highlight);
+}
