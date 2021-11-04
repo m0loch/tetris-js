@@ -5,8 +5,51 @@
 
 .tetris {
     display: flex;
-    align-items: center;
     justify-content: center;
+}
+
+.tetris .mainColumn, .supportColumn {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tetris .mainColumn {
+    justify-content: space-evenly;
+    min-height: 80vh;
+}
+
+.tetris .supportColumn {
+    justify-content: flex-start;
+    justify-content: space-between;
+    padding-left: 30px;
+    height: calc(20 * var(--cell-size));;
+    overflow-y: visible;
+}
+
+.tetris .supportColumn fieldset {
+    border: solid var(--a-color);
+    border-radius: 5px;
+    width: 80%;
+}
+
+
+.tetris .supportColumn fieldset * {
+    padding: 10px;
+}
+
+.tetris .supportColumn fieldset legend {
+    padding: 0px 10px;
+}
+
+.tetris .supportColumn fieldset td {
+    padding: 0;
+    text-align: center;
+}
+
+.tetris button {
+    align-self: center;
 }
 
 .tetris .grid {
@@ -16,6 +59,7 @@
     height: calc(20 * var(--cell-size));
     width: calc(12 * var(--cell-size));
     border: solid var(--a-color);
+    border-radius: 5px;
 }
 
 .tetris .tile {

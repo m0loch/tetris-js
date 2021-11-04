@@ -15,13 +15,22 @@ _by Romeo Graifenberg_
 
 1. add extra components
     - start button
-    - next piece
+        -> lacks functionality
     - score
+        -> lacks functionality
+    - next piece
+        -> lacks functionality
+    - desktop controls legend
+        -> OK
     - mobile controls
+        -> only TODO
 2. pieces definition
 3. definition of the play grid and actual adding of pieces
-4. controls
-5. game loop for single piece
+4. game loop for single piece
+5. controls
+    - left/right
+    - speed up
+    - rotation
 6. actual game play
     - pick next piece + next piece control
     - game over
