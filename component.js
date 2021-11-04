@@ -28,6 +28,7 @@ class Tetris extends Component {
                     </Subsection>
                     <Subsection className="only-desktop" title="Legend">
                         <table>
+                            <tbody>
                             <tr>
                                 <td><kbd>←</kbd> / <kbd>→</kbd></td><td><p>move piece</p></td>
                             </tr>
@@ -40,6 +41,7 @@ class Tetris extends Component {
                             <tr>
                                 <td><kbd>Space</kbd></td><td><p>start / pause</p></td>
                             </tr>
+                            </tbody>
                         </table>
                     </Subsection>
                 </div>
