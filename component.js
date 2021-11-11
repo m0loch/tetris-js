@@ -10,6 +10,20 @@ function getTileColor(value) {
     switch (value) {
         case 0:
             return "tile empty";
+        case 1:
+            return "tile I";
+        case 2:
+            return "tile L";
+        case 3:
+            return "tile J";
+        case 4:
+            return "tile S";
+        case 5:
+            return "tile Z";
+        case 6:
+            return "tile T";
+        case 7:
+            return "tile O";
         default:
             return "tile red";
     }
@@ -32,15 +46,14 @@ class Tetris extends Component {
     }
 
     render() {
-        console.log(this.state);
         const divs = [];
         this.state.field.forEach(value => divs.push(<div key={divs.length} className={ getTileColor(value) } />));
 
         const preview = [];
         console.log(this.state.next);
-        this.state.next.shape.forEach(row => {
+        this.state.next.forEach(row => {
             row.forEach(value => preview.push(<div key={preview.length} className={ getTileColor(value) } />));
-            preview.push(<br key={preview.length} />);
+            preview.push(<div className="break" key={preview.length} />);
         });
 
         return (

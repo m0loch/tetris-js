@@ -1,10 +1,13 @@
 import BlocksFactory from "./blocksFactory";
 
 class GameManager {
+    constructor() {
+        this.lastBlock = -1;
+    }
 
     start = () => {
-        //Temp
-        return BlocksFactory.getRandomBlock();
+        this.lastBlock = (++this.lastBlock) % 7;
+        return BlocksFactory.getBlock(this.lastBlock);
     }    
 }
 

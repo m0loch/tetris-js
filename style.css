@@ -26,6 +26,7 @@
     padding-left: 30px;
     height: calc(20 * var(--cell-size));;
     width: 30%;
+    max-width: calc(12 * var(--cell-size));
     overflow-y: visible;
 }
 
@@ -77,6 +78,10 @@
     flex-wrap: wrap;
     height: calc(4 * var(--cell-size));
     width: calc(4 * var(--cell-size));
+
+    /* removes the gap between lines / columns */
+    align-content: center;
+    justify-content: center;
 }
 
 .tetris .preview * {
@@ -88,14 +93,42 @@
     height: calc(var(--cell-size) - 2px);
     width: calc(var(--cell-size) - 2px);
 
-    border: solid 1px var(--a-color);
+    border: solid 1px transparent;
 }
 
 .tetris .preview .tile.empty {
-    border: 0px;
+    border-color: transparent;
     background-color: transparent;
 }
 
-.tetris .red {
-    background-color: #FF0000;
+.tetris .break {
+    width: 100%;
+}
+
+.tetris .I {
+    background-color: #01F0F1;
+}
+
+.tetris .L {
+    background-color: #EFA000;
+}
+
+.tetris .J {
+    background-color: #0001F0;
+}
+
+.tetris .S {
+    background-color: #00F000;
+}
+
+.tetris .Z {
+    background-color: #F10100;
+}
+
+.tetris .T {
+    background-color: #A100F2;
+}
+
+.tetris .O {
+    background-color: #F0F001;
 }
