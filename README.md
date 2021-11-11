@@ -15,11 +15,11 @@ _by Romeo Graifenberg_
 
 1. add extra components
     - start button
-        -> lacks functionality
+        -> temporary functionality
     - score
         -> lacks functionality
     - next piece
-        -> lacks functionality
+        -> OK
     - desktop controls legend
         -> OK
     - mobile controls

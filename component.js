@@ -1,14 +1,47 @@
 import React, { Component } from 'react';
 import Subsection from './subsection';
 
+import GameManager from './game/gameManager';
+import BlocksFactory from './game/blocksFactory';
+
 import './style.css';
 
+function getTileColor(value) {
+    switch (value) {
+        case 0:
+            return "tile empty";
+        default:
+            return "tile red";
+    }
+}
+
 class Tetris extends Component {
-    render() {
-        const divs = [];
-        for (let i = 0; i < 12 * 20; i++) {
-            divs.push(<div key={i} className="tile" />);
+    constructor(props) {
+        super(props);
+
+        this.game = new GameManager();
+
+        const field = new Array(props.width * props.height).fill(0);
+
+        this.state = {
+            score: 0,
+            next: BlocksFactory.getEmpty(),
+            field,
+            ...props,
         }
+    }
+
+    render() {
+        console.log(this.state);
+        const divs = [];
+        this.state.field.forEach(value => divs.push(<div key={divs.length} className={ getTileColor(value) } />));
+
+        const preview = [];
+        console.log(this.state.next);
+        this.state.next.shape.forEach(row => {
+            row.forEach(value => preview.push(<div key={preview.length} className={ getTileColor(value) } />));
+            preview.push(<br key={preview.length} />);
+        });
 
         return (
             <div className="tetris">
@@ -16,15 +49,21 @@ class Tetris extends Component {
                     <div className="grid">
                         {divs}
                     </div>
-                    <button>Start</button>
+                    <button onClick={ () => {
+                            let state = {...this.state};
+                            state.next = this.game.start();
+                            this.setState(state);
+                        } }>Start</button>
                 </div>
 
                 <div className="supportColumn">
                     <Subsection title="Score">
-                        <p>(value taken from the state)</p>
+                        <p className="score">{ this.props.score }</p>
                     </Subsection>
                     <Subsection title="Next">
-                        <p>(value taken from the state)</p>
+                        <div className="preview">
+                            {preview}
+                        </div>
                     </Subsection>
                     <Subsection className="only-desktop" title="Legend">
                         <table>

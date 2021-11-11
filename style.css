@@ -25,10 +25,13 @@
     justify-content: space-between;
     padding-left: 30px;
     height: calc(20 * var(--cell-size));;
+    width: 30%;
     overflow-y: visible;
 }
 
 .tetris .supportColumn fieldset {
+    display: flex;
+    justify-content: center;
     border: solid var(--a-color);
     border-radius: 5px;
     width: 80%;
@@ -62,6 +65,24 @@
     border-radius: 5px;
 }
 
+.tetris .score {
+    width: 80%;
+    text-align: right;
+    font-size: 2rem;
+}
+
+.tetris .preview {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: calc(4 * var(--cell-size));
+    width: calc(4 * var(--cell-size));
+}
+
+.tetris .preview * {
+    padding: 0 !important;
+}
+
 .tetris .tile {
     background-color: var(--square-color);
     height: calc(var(--cell-size) - 2px);
@@ -70,7 +91,11 @@
     border: solid 1px var(--a-color);
 }
 
-/* temporary, for testing purposes */
-.tetris .tile:hover {
-    background-color: var(--highlight);
+.tetris .preview .tile.empty {
+    border: 0px;
+    background-color: transparent;
+}
+
+.tetris .red {
+    background-color: #FF0000;
 }
