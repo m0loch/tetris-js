@@ -33,24 +33,22 @@ class Tetris extends Component {
     constructor(props) {
         super(props);
 
-        this.game = new GameManager();
-
-        const field = new Array(props.width * props.height).fill(0);
+        this.game = new GameManager(this);
+        const board = this.game.getEmptyField(props.width, props.height);
 
         this.state = {
             score: 0,
             next: BlocksFactory.getEmpty(),
-            field,
+            board,
             ...props,
         }
     }
 
     render() {
         const divs = [];
-        this.state.field.forEach(value => divs.push(<div key={divs.length} className={ getTileColor(value) } />));
+        this.state.board.forEach(row => row.forEach(value => divs.push(<div key={divs.length} className={ getTileColor(value) } />)));
 
         const preview = [];
-        console.log(this.state.next);
         this.state.next.forEach(row => {
             row.forEach(value => preview.push(<div key={preview.length} className={ getTileColor(value) } />));
             preview.push(<div className="break" key={preview.length} />);
@@ -62,11 +60,7 @@ class Tetris extends Component {
                     <div className="grid">
                         {divs}
                     </div>
-                    <button onClick={ () => {
-                            let state = {...this.state};
-                            state.next = this.game.start();
-                            this.setState(state);
-                        } }>Start</button>
+                    <button onClick={ () => this.game.start() }>Start</button>
                 </div>
 
                 <div className="supportColumn">

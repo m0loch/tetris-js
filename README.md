@@ -25,18 +25,15 @@ You can customize the colors by defining the following variables in the :root el
         -> lacks functionality
     - mobile controls
         -> only TODO
-2. actual adding of pieces to the play grid
-    - take piece from preview to grid
-    - choose next piece
-    - balanced random?
-3. controls
+2. controls
     - left/right
     - speed up
     - rotation
-4. control single piece
-5. actual game play
+3. control single piece
+4. actual game play
     - game loop
     - game over
     - remove full lines
     - score
+5. next piece chosen by a balanced random?
 6. mobile version
