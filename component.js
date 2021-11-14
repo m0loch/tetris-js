@@ -96,6 +96,97 @@ class Tetris extends Component {
             </div>
         )
     }
+
+    componentDidMount() {
+        window.addEventListener('keydown', this.onKeyPressed);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this.onKeyPressed);
+    }
+
+    onKeyPressed = (event) => {
+        let handled = false;
+        if (event.key !== undefined) {
+            // Correct handling of the event
+            switch (event.key) {
+                case "ArrowLeft":
+                    this.game.moveLeft();
+                    handled = true;
+                    break;
+    
+                case "ArrowRight":
+                    this.game.moveRight();
+                    handled = true;
+                    break;
+    
+                case "ArrowDown":
+                    this.game.dropPiece();
+                    handled = true;
+                    break;
+
+                case "A":
+                case "a":
+                    this.game.rotateLeft();
+                    handled = true;
+                    break;
+
+                case "S":
+                case "s":
+                    this.game.rotateRight();
+                    handled = true;
+                    break;
+
+                case " ":
+                    this.game.pauseGame();
+                    handled = true;
+                    break;
+
+                default:
+                    break;
+            }
+        } else {
+            // Deprecated handling, but needed on some browsers
+            switch (event.keyCode) {
+                case 37: // "ArrowLeft"
+                    this.game.moveLeft();
+                    handled = true;
+                    break;
+    
+                case 39: // "ArrowRight"
+                    this.game.moveRight();
+                    handled = true;
+                    break;
+    
+                case 40: // "ArrowDown"
+                    this.game.dropPiece();
+                    handled = true;
+                    break;
+
+                case 65: // A
+                    this.game.rotateLeft();
+                    handled = true;
+                    break;
+
+                case 83: // S
+                    this.game.rotateRight();
+                    handled = true;
+                    break;
+
+                case 32: // Space
+                    this.game.pauseGame();
+                    handled = true;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        if (handled) {
+            event.preventDefault();
+        }
+    }
 }
 
 export default Tetris;

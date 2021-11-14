@@ -72,6 +72,31 @@ class GameManager {
         this.lastBlock = (++this.lastBlock) % 7;
         return BlocksFactory.getBlock(this.lastBlock);
     }
+
+    // PLAYER INPUT
+    moveLeft = () => {
+
+    }
+
+    moveRight = () => {
+        
+    }
+
+    dropPiece = () => {
+        
+    }
+
+    rotateLeft = () => {
+        
+    }
+
+    rotateRight = () => {
+        
+    }
+
+    pauseGame = () => {
+        
+    }
 }
 
 export default GameManager;
