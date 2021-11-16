@@ -26,14 +26,11 @@ You can customize the colors by defining the following variables in the :root el
     - mobile controls
         -> only TODO
 2. controls
-    - left/right
-    - speed up
     - rotation
-3. control single piece
-4. actual game play
-    - game loop
+3. actual game play
     - game over
     - remove full lines
     - score
-5. next piece chosen by a balanced random?
-6. mobile version
+    - game loop
+4. next piece chosen by a balanced random?
+5. mobile version
