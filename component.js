@@ -25,7 +25,7 @@ function getTileColor(value) {
         case 7:
             return "tile O";
         default:
-            return "tile red";
+            return "tile";
     }
 }
 
