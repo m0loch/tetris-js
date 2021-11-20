@@ -21,12 +21,9 @@ You can customize the colors by defining the following variables in the :root el
 1. add extra components
     - start button
         -> temporary functionality
-    - score
-        -> lacks functionality
     - mobile controls
         -> only TODO
 2. actual game play
-    - score
     - game over
     - game loop
 3. next piece chosen by a balanced random?

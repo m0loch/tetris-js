@@ -46,7 +46,7 @@ function calculateBoard(field, player) {
 function removeFullLines(board) {
     let width = board[0].length;
 
-    for (let y = 0; y < board.length; y++) {
+    for (let y = board.length - 1; y >= 0; y--) {
         let isFullRow = true;
 
         for (let x = 0; x < width; x++) {
@@ -57,8 +57,11 @@ function removeFullLines(board) {
         }
 
         if (isFullRow) {
+            /* NB: we're not replacing the removed lines;
+             * that will be handled by update()
+             * which will also count the missing lines to calculate the score
+             */
             board.splice(y, 1);
-            board.unshift(getEmptyRow(width));
         }
     }
 
@@ -124,10 +127,10 @@ class GameManager {
 
         this.field = this.getEmptyField(this.gridRef.state.width, this.gridRef.state.height);
 
-        this.update(true);
+        this.update();
     }
 
-    update = (newPiece = false) => {
+    update = () => {
         let state = {...this.gridRef.state};
 
         if (!this.player.isSet) {
@@ -136,6 +139,12 @@ class GameManager {
                 state.width);
 
             state.next = this.getNextBlock();
+        }
+
+        // Updates the score and refills removed lines
+        while (this.field.length < state.height) {
+            state.score += 10;
+            this.field.unshift(getEmptyRow(state.width));
         }
 
         state.field = this.field;
