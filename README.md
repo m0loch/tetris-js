@@ -26,7 +26,6 @@ You can customize the colors by defining the following variables in the :root el
     - mobile controls
         -> only TODO
 2. actual game play
-    - remove full lines
     - score
     - game over
     - game loop

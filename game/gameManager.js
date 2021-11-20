@@ -1,5 +1,9 @@
 import BlocksFactory from "./blocksFactory";
 
+function getEmptyRow(width) {
+    return new Array(width).fill(0);
+}
+
 function checkCollision(field, player) {
 
     for (let y = 0; y < player.shape.length; y++) {
@@ -35,6 +39,28 @@ function calculateBoard(field, player) {
             }
         });
     });
+
+    return board;
+}
+
+function removeFullLines(board) {
+    let width = board[0].length;
+
+    for (let y = 0; y < board.length; y++) {
+        let isFullRow = true;
+
+        for (let x = 0; x < width; x++) {
+            if (board[y][x] === 0) {
+                isFullRow = false;
+                continue;
+            }
+        }
+
+        if (isFullRow) {
+            board.splice(y, 1);
+            board.unshift(getEmptyRow(width));
+        }
+    }
 
     return board;
 }
@@ -121,7 +147,7 @@ class GameManager {
     }
 
     getEmptyField = (width, height) => {
-        return Array.from(Array(height), () => new Array(width).fill(0))
+        return Array.from(Array(height), () => getEmptyRow(width));
     }
 
     setPlayer = (block, fieldWidth) => {
@@ -180,7 +206,7 @@ class GameManager {
             this.update();
         } else {
             this.player.y--;
-            this.field = calculateBoard(this.field, this.player);
+            this.field = removeFullLines(calculateBoard(this.field, this.player));
             this.resetPlayer();
             this.update();
         }
