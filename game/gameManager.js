@@ -34,7 +34,7 @@ function calculateBoard(field, player) {
 
     player.shape.forEach((row, y) => {
         row.forEach((cell, x) => {
-            if (cell > 0) {
+            if ((cell > 0) && (board[player.y + y][player.x + x] === 0)) {
                 board[player.y + y][player.x + x] = cell;
             }
         });
@@ -126,6 +126,7 @@ class GameManager {
         }
 
         this.field = this.getEmptyField(this.gridRef.state.width, this.gridRef.state.height);
+        this.gameOver = false;
 
         this.update();
     }
@@ -139,18 +140,24 @@ class GameManager {
                 state.width);
 
             state.next = this.getNextBlock();
+
+            if (checkCollision(this.field, this.player)) {
+                this.gameOver = true;
+            }
         }
 
-        // Updates the score and refills removed lines
-        while (this.field.length < state.height) {
-            state.score += 10;
-            this.field.unshift(getEmptyRow(state.width));
+        if (!this.gameOver) {
+            // Updates the score and refills removed lines
+            while (this.field.length < state.height) {
+                state.score += 10;
+                this.field.unshift(getEmptyRow(state.width));
+            }
+
+            state.field = this.field;
         }
 
-        state.field = this.field;
-
-        // TODO: check here for game over
         state.board = calculateBoard(this.field, this.player);
+        state.gameOver = this.gameOver;
 
         this.gridRef.setState(state);
     }
@@ -176,8 +183,10 @@ class GameManager {
     }
 
     // PLAYER INPUT
+    inputEnabled = () => (this.player.isSet && !this.gameOver);
+
     moveLeft = () => {
-        if (!this.player.isSet) {
+        if (!this.inputEnabled()) {
             return;
         }
 
@@ -191,7 +200,7 @@ class GameManager {
     }
 
     moveRight = () => {
-        if (!this.player.isSet) {
+        if (!this.inputEnabled()) {
             return;
         }
 
@@ -205,7 +214,7 @@ class GameManager {
     }
 
     dropPiece = () => {
-        if (!this.player.isSet) {
+        if (!this.inputEnabled()) {
             return;
         }
 
@@ -222,7 +231,7 @@ class GameManager {
     }
 
     rotateLeft = () => {
-        if (!this.player.isSet) {
+        if (!this.inputEnabled()) {
             return;
         }
 
@@ -236,7 +245,7 @@ class GameManager {
     }
 
     rotateRight = () => {
-        if (!this.player.isSet) {
+        if (!this.inputEnabled()) {
             return;
         }
 
