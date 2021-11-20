@@ -28,7 +28,7 @@ function checkCollision(field, player) {
 
 function calculateBoard(field, player) {
     const board = [];
-    field.forEach(row => board.push(row.slice()));
+    field.forEach(row => board.push(row.slice())); // -> Shallow copy of row's elements
 
     let yCorrection = (player.shape[0].findIndex(el => el > 0) > -1) ? 0 : -1;
 
@@ -41,6 +41,29 @@ function calculateBoard(field, player) {
     });
 
     return board;
+}
+
+function rotateMatrix(matrix, clockWise) {
+    const result = [];
+    matrix.forEach((row, y) => {
+        row.forEach((item, x) => {
+            if (y === 0) {
+                if (clockWise) {
+                    result.push([item]);
+                } else {
+                    result.unshift([item]); // Adds at the beginning of the array
+                }
+            } else {
+                if (clockWise) {
+                    result[x].unshift(item);
+                } else {
+                    result[row.length - 1 - x].push(item);
+                }
+            }
+        });
+    });
+
+    return result;
 }
 
 class GameManager {
@@ -172,6 +195,13 @@ class GameManager {
             return;
         }
 
+        this.player.shape = rotateMatrix(this.player.shape, false);
+
+        if (!checkCollision(this.field, this.player)) {
+            this.update();
+        } else {
+            this.player.shape = rotateMatrix(this.player.shape, true);
+        }
     }
 
     rotateRight = () => {
@@ -179,6 +209,13 @@ class GameManager {
             return;
         }
 
+        this.player.shape = rotateMatrix(this.player.shape, true);
+
+        if (!checkCollision(this.field, this.player)) {
+            this.update();
+        } else {
+            this.player.shape = rotateMatrix(this.player.shape, false);
+        }
     }
 
     pauseGame = () => {
