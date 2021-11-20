@@ -65,7 +65,7 @@ class Tetris extends Component {
 
                 <div className="supportColumn">
                     <Subsection title="Score">
-                        <p className="score">{ this.props.score }</p>
+                        <p className="score">{ this.state.score }</p>
                     </Subsection>
                     <Subsection title="Next">
                         <div className="preview">
