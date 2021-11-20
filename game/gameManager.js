@@ -2,8 +2,6 @@ import BlocksFactory from "./blocksFactory";
 
 function checkCollision(field, player) {
 
-    let yCorrection = (player.shape[0].findIndex(el => el > 0) > -1) ? 0 : -1;
-
     for (let y = 0; y < player.shape.length; y++) {
         const row = player.shape[y];
         
@@ -15,9 +13,9 @@ function checkCollision(field, player) {
                 continue;
             }
 
-            if ((field[player.y + yCorrection + y]  === undefined)                  // Vertical check for boundaries
-                || (field[player.y + yCorrection + y][player.x + x] === undefined)  // Horizontal check for boundaries
-                || (field[player.y + yCorrection + y][player.x + x] > 0)) {         // Check that the field is empty
+            if ((field[player.y + y]  === undefined)                  // Vertical check for boundaries
+                || (field[player.y + y][player.x + x] === undefined)  // Horizontal check for boundaries
+                || (field[player.y + y][player.x + x] > 0)) {         // Check that the field is empty
                 return true;
             }
         }
@@ -30,12 +28,10 @@ function calculateBoard(field, player) {
     const board = [];
     field.forEach(row => board.push(row.slice())); // -> Shallow copy of row's elements
 
-    let yCorrection = (player.shape[0].findIndex(el => el > 0) > -1) ? 0 : -1;
-
     player.shape.forEach((row, y) => {
         row.forEach((cell, x) => {
             if (cell > 0) {
-                board[player.y + y + yCorrection][player.x + x] = cell;
+                board[player.y + y][player.x + x] = cell;
             }
         });
     });
@@ -138,7 +134,7 @@ class GameManager {
     }
 
     getNextBlock = () => {
-        // TODO: right now we're cycling through the blocks, in the future this will be a double-shufflebug random
+        // TODO: right now we're cycling through the blocks, in the future this will be a double-shufflebag random
 
         this.lastBlock = (++this.lastBlock) % 7;
         return BlocksFactory.getBlock(this.lastBlock);
