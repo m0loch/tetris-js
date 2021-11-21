@@ -37,6 +37,7 @@ class Tetris extends Component {
         const board = this.game.getEmptyField(props.width, props.height);
 
         this.state = {
+            level: 1,
             score: 0,
             next: BlocksFactory.getEmpty(),
             board,
@@ -66,6 +67,9 @@ class Tetris extends Component {
                 <div className="supportColumn">
                     <Subsection title="Score">
                         <p className="score">{ this.state.score }</p>
+                    </Subsection>
+                    <Subsection title="Level">
+                        <p className="score">{ this.state.level }</p>
                     </Subsection>
                     <Subsection title="Next">
                         <div className="preview">

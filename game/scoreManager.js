@@ -31,8 +31,6 @@ class ScoreManager {
         if (this.linesForCurrLevel >= LINES_FOR_NEXT_LEVEL) {
             this.linesForCurrLevel -= LINES_FOR_NEXT_LEVEL;
             this.level++;
-
-            console.log(`LEVEL UP: ${this.level}`);
         }
     }
 }
