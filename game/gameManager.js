@@ -132,6 +132,30 @@ class GameManager {
         this.gameOver = false;
 
         this.update();
+
+        // Starts the game loop
+        this.dropCounter = 0;
+        this.lastDrop = undefined;
+        requestAnimationFrame(this.gameLoop);
+    }
+
+    gameLoop = (time) => {
+        if (this.lastDrop === undefined) {
+            this.lastDrop = time;
+        }
+
+        const deltaTime = time - this.lastDrop;
+
+        this.dropCounter += deltaTime;
+        if (this.dropCounter > this.scoreManager.getDropInterval()) {
+            this.dropPiece();
+        }
+    
+        this.lastDrop = time;
+
+        if (!this.gameOver) {
+            requestAnimationFrame(this.gameLoop);
+        }
     }
 
     update = () => {
@@ -227,14 +251,14 @@ class GameManager {
 
         this.player.y++;
 
-        if (!checkCollision(this.field, this.player)) {
-            this.update();
-        } else {
+        if (checkCollision(this.field, this.player)) {
             this.player.y--;
             this.field = removeFullLines(calculateBoard(this.field, this.player));
             this.resetPlayer();
-            this.update();
         }
+
+        this.dropCounter = 0;
+        this.update();
     }
 
     rotateLeft = () => {

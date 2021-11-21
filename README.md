@@ -15,7 +15,30 @@ You can customize the colors by defining the following variables in the :root el
     --square-color
 
 ## Difficulty level
-The player will start the game at level 1
+The player will start the game at level 1, gaining a level for every 10 lines completed.
+Gaining levels grants the player more points (see the following section) but also increases the speed
+at which pieces fall, as per this table:
+
+| Level | Drop speed (msec) |
+|------:|------------------:|
+|    01 |               800 |
+|    02 |               720 |
+|    03 |               630 |
+|    04 |               550 |
+|    05 |               470 |
+|    06 |               380 |
+|    07 |               300 |
+|    08 |               220 |
+|    09 |               130 |
+|    10 |               100 |
+| 11-13 |                80 |
+| 14-16 |                70 |
+| 17-19 |                50 |
+| 20-29 |                30 |
+|   30+ |                20 |
+
+### Source
+https://gaming.stackexchange.com/questions/13057/tetris-difficulty
 
 ## Scoring system
 When rows are cleared, the game will award the player a number of points calculated as N * L, with N
@@ -24,11 +47,11 @@ being a coefficient related to the number of rows cleared at once and L being th
 
 ### N coefficient
 | Lines cleared | Base points |
-|---------------|------------:|
-| 1 |   40 |
-| 2 |  100 |
-| 3 |  300 |
-| 4 | 1200 |
+|--------------:|------------:|
+|             1 |          40 |
+|             2 |         100 |
+|             3 |         300 |
+|             4 |        1200 |
 
 ### Bonus points for quick dropping
 Contrary to the NES version, the game doesn't support any bonus score for dropping pieces
@@ -49,9 +72,7 @@ https://harddrop.com/wiki/Tetris_Guideline
     - mobile controls
         -> only TODO
 2. actual game play
-    - game loop
-    - start as pause + remove start button
-    - difficulty level
+    - space as pause + remove start button
 3. next piece chosen by a balanced random?
 4. fix *style.css* in order for it to get accomodate for changes of the height/width parameters
 5. mobile version

@@ -7,6 +7,24 @@ const CLEARED_ROWS_COEFFICIENT = [
 
 const LINES_FOR_NEW_LEVEL = 10;
 
+const DROP_INTERVALS_PER_LEVEL = [
+    800,
+    720,
+    630,
+    550,
+    470,
+    380,
+    300,
+    220,
+    130,
+    100,
+    80, 80, 80,
+    70, 70, 70,
+    50, 50, 50,
+    30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+    20,
+];
+
 class ScoreManager {
     constructor() {
         this.resetScore();
@@ -36,6 +54,16 @@ class ScoreManager {
 
     getCurrentProgress = () => {
         return this.linesForCurrLevel * 100 / LINES_FOR_NEW_LEVEL;
+    }
+
+    getDropInterval = () => {
+        const idx = (
+                this.level < DROP_INTERVALS_PER_LEVEL.length
+                    ? this.level
+                    : DROP_INTERVALS_PER_LEVEL.length
+            ) - 1;
+
+        return DROP_INTERVALS_PER_LEVEL[idx];
     }
 }
 
