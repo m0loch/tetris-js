@@ -42,7 +42,6 @@ class BlocksFactory {
         ];
     }
 
-
     static getBlock(value) {
         return BLOCKS[value];
     }
