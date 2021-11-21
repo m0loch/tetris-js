@@ -48,8 +48,6 @@ https://harddrop.com/wiki/Tetris_Guideline
         -> temporary functionality
     - mobile controls
         -> only TODO
-    - level section
-        -> add progress bar for next level?
 2. actual game play
     - game loop
     - start as pause + remove start button

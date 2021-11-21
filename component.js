@@ -39,6 +39,7 @@ class Tetris extends Component {
         this.state = {
             level: 1,
             score: 0,
+            levelProgress: 0,
             next: BlocksFactory.getEmpty(),
             board,
             ...props,
@@ -68,8 +69,9 @@ class Tetris extends Component {
                     <Subsection title="Score">
                         <p className="score">{ this.state.score }</p>
                     </Subsection>
-                    <Subsection title="Level">
+                    <Subsection className="level" title="Level">
                         <p className="score">{ this.state.level }</p>
+                        <progress value={this.state.levelProgress} max="100"/>
                     </Subsection>
                     <Subsection title="Next">
                         <div className="preview">

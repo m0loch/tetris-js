@@ -154,6 +154,7 @@ class GameManager {
             this.scoreManager.addtoScore(state.height - this.field.length);
             state.score = this.scoreManager.score;
             state.level = this.scoreManager.level;
+            state.levelProgress = this.scoreManager.getCurrentProgress();
 
             while (this.field.length < state.height) {
                 this.field.unshift(getEmptyRow(state.width));

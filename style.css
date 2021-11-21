@@ -88,6 +88,23 @@
     padding: 0 !important;
 }
 
+.tetris .level {
+    flex-direction: column;
+    align-items: center;
+}
+
+.tetris progress {
+    padding: 0 !important;
+    width: 100%;
+}
+
+.tetris progress[value]::-webkit-progress-value {
+    -webkit-transition : width .5s ease;
+    -moz-transition : width .5s ease;
+    -o-transition : width .5s ease;
+    transition : width .5s ease;
+}
+
 .tetris .tile {
     background-color: var(--square-color);
     height: calc(var(--cell-size) - 2px);

@@ -5,7 +5,7 @@ const CLEARED_ROWS_COEFFICIENT = [
     1200,
 ]
 
-const LINES_FOR_NEXT_LEVEL = 10;
+const LINES_FOR_NEW_LEVEL = 10;
 
 class ScoreManager {
     constructor() {
@@ -28,10 +28,14 @@ class ScoreManager {
 
         // Updates level
         this.linesForCurrLevel += clearedRows;
-        if (this.linesForCurrLevel >= LINES_FOR_NEXT_LEVEL) {
-            this.linesForCurrLevel -= LINES_FOR_NEXT_LEVEL;
+        if (this.linesForCurrLevel >= LINES_FOR_NEW_LEVEL) {
+            this.linesForCurrLevel -= LINES_FOR_NEW_LEVEL;
             this.level++;
         }
+    }
+
+    getCurrentProgress = () => {
+        return this.linesForCurrLevel * 100 / LINES_FOR_NEW_LEVEL;
     }
 }
 
