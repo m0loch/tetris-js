@@ -48,8 +48,8 @@ https://harddrop.com/wiki/Tetris_Guideline
         -> temporary functionality
     - mobile controls
         -> only TODO
+    - level section
 2. actual game play
-    - actual scoring system
     - game loop
     - start as pause + remove start button
     - difficulty level

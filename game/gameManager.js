@@ -1,4 +1,5 @@
 import BlocksFactory from "./blocksFactory";
+import ScoreManager from "./scoreManager";
 
 function getEmptyRow(width) {
     return new Array(width).fill(0);
@@ -93,6 +94,8 @@ function rotateMatrix(matrix, clockWise) {
 
 class GameManager {
     constructor(gridRef) {
+        this.scoreManager = new ScoreManager();
+
         this.lastBlock = -1;
         this.resetPlayer();
 
@@ -148,8 +151,11 @@ class GameManager {
 
         if (!this.gameOver) {
             // Updates the score and refills removed lines
+            this.scoreManager.addtoScore(state.height - this.field.length);
+            state.score = this.scoreManager.score;
+            state.level = this.scoreManager.level;
+
             while (this.field.length < state.height) {
-                state.score += 10;
                 this.field.unshift(getEmptyRow(state.width));
             }
 
