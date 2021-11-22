@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Subsection from './subsection';
+import PausePanel from './pausePanel';
 
 import GameManager from './game/gameManager';
 import BlocksFactory from './game/blocksFactory';
@@ -37,6 +38,7 @@ class Tetris extends Component {
         const board = this.game.getEmptyField(props.width, props.height);
 
         this.state = {
+            started: false,
             level: 1,
             score: 0,
             levelProgress: 0,
@@ -61,8 +63,8 @@ class Tetris extends Component {
                 <div className="mainColumn">
                     <div className="grid">
                         {divs}
+                        <PausePanel {...this.state} />
                     </div>
-                    <button onClick={ () => this.game.start() }>Start</button>
                 </div>
 
                 <div className="supportColumn">

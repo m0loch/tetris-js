@@ -66,13 +66,7 @@ https://harddrop.com/wiki/Tetris_Guideline
 
 ## Work that still needs to be done
 
-1. add extra components
-    - start button
-        -> temporary functionality
-    - mobile controls
-        -> only TODO
-2. actual game play
-    - space as pause + remove start button
-3. next piece chosen by a balanced random?
+1. add mobile controls
+2. next piece chosen by a balanced random
+3. mobile version
 4. fix *style.css* in order for it to get accomodate for changes of the height/width parameters
-5. mobile version

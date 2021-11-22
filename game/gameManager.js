@@ -95,11 +95,9 @@ function rotateMatrix(matrix, clockWise) {
 class GameManager {
     constructor(gridRef) {
         this.scoreManager = new ScoreManager();
-
-        this.lastBlock = -1;
         this.resetPlayer();
-
-        // TODO: this should be an object interface, not the whole component
+        // We're passing a reference to the original component
+        // in order to access its setState() method
         this.gridRef = gridRef;
     }
 
@@ -110,7 +108,16 @@ class GameManager {
             y: 0,
             isSet: false,
         }
+    }
 
+    setPlayer = (block, fieldWidth) => {
+        console.log(block);
+        this.player = {
+            shape: block,
+            x: Math.ceil((fieldWidth - block[0].length) / 2),
+            y: 0,
+            isSet: true,
+        };
     }
 
     start = () => {
@@ -118,18 +125,23 @@ class GameManager {
         // Player = the piece that the player is actually controlling
         // Field = the full game field, containing blocks from previous turns but not the current piece
         // Board = the result of the merging the previous two values that will be presented to the user
+        this.lastBlock = -1;
 
-        if (this.lastBlock === -1) {
-            // Temporary: this should happen only when the old piece has been consumed
-            this.setPlayer(
-                this.getNextBlock(),
-                this.gridRef.state.width);
-
-            this.gridRef.state.next = this.getNextBlock();
-        }
+        this.scoreManager.resetScore();
+        this.setPlayer(
+            this.getNextBlock(),
+            this.gridRef.state.width);
 
         this.field = this.getEmptyField(this.gridRef.state.width, this.gridRef.state.height);
-        this.gameOver = false;
+
+        let state = {...this.gridRef.state};
+        state.next = this.getNextBlock();
+        state.gameOver = false;
+        state.started = true;
+        state.paused = false;
+        this.pauseStart = this.pauseEnd = undefined;
+        
+        this.gridRef.setState(state);
 
         this.update();
 
@@ -144,7 +156,12 @@ class GameManager {
             this.lastDrop = time;
         }
 
-        const deltaTime = time - this.lastDrop;
+        let deltaTime = time - this.lastDrop;
+
+        if (!this.gridRef.state.paused && (this.pauseStart !== undefined)) {
+            deltaTime -= this.pauseEnd - this.pauseStart;
+            this.pauseStart = this.pauseEnd = undefined;
+        }
 
         this.dropCounter += deltaTime;
         if (this.dropCounter > this.scoreManager.getDropInterval()) {
@@ -153,9 +170,15 @@ class GameManager {
     
         this.lastDrop = time;
 
-        if (!this.gameOver) {
+        if (!this.gridRef.gameOver && !this.gridRef.state.paused) {
             requestAnimationFrame(this.gameLoop);
         }
+    }
+
+    setPause = (value) => {
+        let state = {...this.gridRef.state};
+        state.paused = value;
+        this.gridRef.setState(state);
     }
 
     update = () => {
@@ -169,11 +192,11 @@ class GameManager {
             state.next = this.getNextBlock();
 
             if (checkCollision(this.field, this.player)) {
-                this.gameOver = true;
+                state.gameOver = true;
             }
         }
 
-        if (!this.gameOver) {
+        if (!state.gameOver) {
             // Updates the score and refills removed lines
             this.scoreManager.addtoScore(state.height - this.field.length);
             state.score = this.scoreManager.score;
@@ -188,22 +211,12 @@ class GameManager {
         }
 
         state.board = calculateBoard(this.field, this.player);
-        state.gameOver = this.gameOver;
 
         this.gridRef.setState(state);
     }
 
     getEmptyField = (width, height) => {
         return Array.from(Array(height), () => getEmptyRow(width));
-    }
-
-    setPlayer = (block, fieldWidth) => {
-        this.player = {
-            shape: block,
-            x: Math.ceil((fieldWidth - block[0].length) / 2),
-            y: 0,
-            isSet: true,
-        };
     }
 
     getNextBlock = () => {
@@ -214,7 +227,7 @@ class GameManager {
     }
 
     // PLAYER INPUT
-    inputEnabled = () => (this.player.isSet && !this.gameOver);
+    inputEnabled = () => (this.player.isSet && !this.gridRef.state.gameOver && !this.gridRef.state.paused);
 
     moveLeft = () => {
         if (!this.inputEnabled()) {
@@ -290,7 +303,18 @@ class GameManager {
     }
 
     pauseGame = () => {
-        console.log('nothing to be done atm')
+        if (!this.gridRef.state.started || this.gridRef.state.gameOver) {
+            this.start();
+        } else {
+            if (!this.gridRef.state.paused) {
+                this.pauseStart = Date.now();
+                this.setPause(true);
+            } else {
+                this.setPause(false);
+                this.pauseEnd = Date.now();
+                requestAnimationFrame(this.gameLoop)
+            }
+        }
     }
 }
 
