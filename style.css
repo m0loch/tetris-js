@@ -125,10 +125,8 @@
 
 .tetris .tile {
     background-color: var(--square-color);
-    height: calc(var(--cell-size) - 2px);
-    width: calc(var(--cell-size) - 2px);
-
-    border: solid 1px transparent;
+    height: var(--cell-size);
+    width: var(--cell-size);
 }
 
 .tetris .preview .tile.empty {
@@ -142,28 +140,42 @@
 
 .tetris .I {
     background-color: #01F0F1;
+    box-shadow: inset -3px -3px #00807F,
+        inset 3px 3px #51FFFF;
 }
 
 .tetris .L {
     background-color: #EFA000;
+    box-shadow: inset -3px -3px #785000,
+        inset 3px 3px #FFB050;
 }
 
 .tetris .J {
     background-color: #0001F0;
+    box-shadow: inset -3px -3px #000080,
+        inset 3px 3px #5052FF;
 }
 
 .tetris .S {
     background-color: #00F000;
+    box-shadow: inset -3px -3px #008000,
+        inset 3px 3px #50FF50;
 }
 
 .tetris .Z {
     background-color: #F10100;
+    box-shadow: inset -3px -3px #810000,
+        inset 3px 3px #FF5250;
 }
 
 .tetris .T {
     background-color: #A100F2;
+    box-shadow: inset -3px -3px #510081,
+        inset 3px 3px #B051FF;
 }
 
 .tetris .O {
     background-color: #F0F001;
+    box-shadow: inset -3px -3px #808000,
+        inset 3px 3px #FFFF51;
 }
