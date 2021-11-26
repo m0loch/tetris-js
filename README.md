@@ -64,9 +64,22 @@ The game does not adhere to the Tetris guidelines, maybe it will in the future t
 
 https://harddrop.com/wiki/Tetris_Guideline
 
+### Missing features from the guidelines:
+
+1. Playfield should be 10x22
+2. Pieces should enter with their longest side facing downwards
+    -   also: check their entry point
+3. The rotations should respect the SRS system: https://harddrop.com/wiki/SRS
+4. Up key should perform a hard drop
+5. Delayed auto-shift: https://harddrop.com/wiki/DAS
+6. Fix the randomizer by implementing a shuffle bag
+7. Ghost piece mechanic
+8. Hold piece mechanic
+
 ## Work that still needs to be done
 
-1. add mobile controls
-2. next piece chosen by a balanced random
+1. next piece chosen by a balanced random
+2. add mobile controls:
+    https://www.dropbox.com/s/g55gwls0h2muqzn/tetris%20guideline%20docs%202009.zip?file_subpath=%2F2009+Tetris+Design+Guideline.pdf (page 12/90)
 3. mobile version
 4. fix *style.css* in order for it to get accomodate for changes of the height/width parameters
