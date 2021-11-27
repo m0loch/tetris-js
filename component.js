@@ -38,6 +38,8 @@ class Tetris extends Component {
         const board = this.game.getEmptyField(props.width, props.height);
 
         this.state = {
+            height: 22,
+            width: 10,
             started: false,
             level: 1,
             score: 0,

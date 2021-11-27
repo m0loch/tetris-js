@@ -111,7 +111,6 @@ class GameManager {
     }
 
     setPlayer = (block, fieldWidth) => {
-        console.log(block);
         this.player = {
             shape: block,
             x: Math.ceil((fieldWidth - block[0].length) / 2),

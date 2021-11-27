@@ -66,15 +66,14 @@ https://harddrop.com/wiki/Tetris_Guideline
 
 ### Missing features from the guidelines:
 
-1. Playfield should be 10x22
-2. Pieces should enter with their longest side facing downwards
+1. Pieces should enter with their longest side facing downwards
     -   also: check their entry point
-3. The rotations should respect the SRS system: https://harddrop.com/wiki/SRS
-4. Up key should perform a hard drop
-5. Delayed auto-shift: https://harddrop.com/wiki/DAS
-6. Fix the randomizer by implementing a shuffle bag
-7. Ghost piece mechanic
-8. Hold piece mechanic
+2. The rotations should respect the SRS system: https://harddrop.com/wiki/SRS
+3. Up key should perform a hard drop
+4. Delayed auto-shift: https://harddrop.com/wiki/DAS
+5. Fix the randomizer by implementing a shuffle bag
+6. Ghost piece mechanic
+7. Hold piece mechanic
 
 ## Work that still needs to be done
 

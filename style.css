@@ -3,6 +3,13 @@
     --cell-size: 30px;
 }
 
+/* Mobile only */
+@media only screen and (max-width: 969px) {
+    :root {
+        --cell-size: 4vw;
+    }
+}
+
 .tetris {
     display: flex;
     justify-content: center;
@@ -24,9 +31,8 @@
     justify-content: flex-start;
     padding-top: 18px;
     padding-left: 30px;
-    height: calc(20 * var(--cell-size));;
-    width: 30%;
-    max-width: calc(12 * var(--cell-size));
+    height: calc(22 * var(--cell-size));;
+    width: calc(10 * var(--cell-size)); /* ma ovviamente è qui il problema lol */
     overflow-y: visible;
 }
 
@@ -60,11 +66,12 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    height: calc(20 * var(--cell-size));
-    width: calc(12 * var(--cell-size));
+    height: calc(22 * var(--cell-size));
+    width: calc(10 * var(--cell-size));
     border: solid var(--a-color);
     border-radius: 5px;
     position: relative;
+    background-color: var(--square-color);
 }
 
 .tetris .score {
@@ -124,7 +131,6 @@
 }
 
 .tetris .tile {
-    background-color: var(--square-color);
     height: var(--cell-size);
     width: var(--cell-size);
 }
