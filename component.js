@@ -62,13 +62,6 @@ class Tetris extends Component {
 
         return (
             <div className="tetris">
-                <div className="mainColumn">
-                    <div className="grid">
-                        {divs}
-                        <PausePanel {...this.state} />
-                    </div>
-                </div>
-
                 <div className="supportColumn">
                     <Subsection title="Score">
                         <p className="score">{ this.state.score }</p>
@@ -77,6 +70,16 @@ class Tetris extends Component {
                         <p className="score">{ this.state.level }</p>
                         <progress value={this.state.levelProgress} max="100"/>
                     </Subsection>
+                </div>
+
+                <div className="mainColumn">
+                    <div className="grid">
+                        {divs}
+                        <PausePanel {...this.state} />
+                    </div>
+                </div>
+
+                <div className="supportColumn">
                     <Subsection title="Next">
                         <div className="preview">
                             {preview}
@@ -101,8 +104,6 @@ class Tetris extends Component {
                         </table>
                     </Subsection>
                 </div>
-
-                {/* TODO: add controls for mobile in their own "footer" div with position: absolute */}
             </div>
         )
     }

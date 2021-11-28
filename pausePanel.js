@@ -5,7 +5,8 @@ class PausePanel extends Component {
         if (!this.props.started) {
             return (<div className="panel">
                 <h1>TETRIS</h1>
-                <p>Press <kbd>Space</kbd> to start</p>
+                <p className="only-desktop">Press <kbd>Space</kbd> to start</p>
+                <p className="only-mobile">Tap to start</p>
             </div>
             )
         } else if (this.props.paused) {
@@ -15,7 +16,8 @@ class PausePanel extends Component {
         } else if (this.props.gameOver) {
             return (<div className="panel">
                 <h1>GAME OVER :(</h1>
-                <p>Press <kbd>Space</kbd> to try again</p>
+                <p className="only-desktop">Press <kbd>Space</kbd> to try again</p>
+                <p className="only-mobile">Tap to try again</p>
             </div>)
         } else {
             return null;
