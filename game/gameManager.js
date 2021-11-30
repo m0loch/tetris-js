@@ -1,5 +1,6 @@
 import BlocksFactory from "./blocksFactory";
 import ScoreManager from "./scoreManager";
+import ShuffleBag from "./shuffleBag";
 
 function getEmptyRow(width) {
     return new Array(width).fill(0);
@@ -96,7 +97,7 @@ function rotateMatrix(matrix, clockWise) {
 /* this is also where kicks will should be implemented,
 /* provided that's ever going to happen */
 function rotatePiece(player, clockWise) {
-    player.shape = rotateMatrix(player.shape, false);
+    player.shape = rotateMatrix(player.shape, clockWise);
 
     if (player.shape.length === 1) {
         player.x -= 1;
@@ -110,7 +111,9 @@ function rotatePiece(player, clockWise) {
 class GameManager {
     constructor(gridRef) {
         this.scoreManager = new ScoreManager();
+        this.randomizer = new ShuffleBag();
         this.resetPlayer();
+
         // We're passing a reference to the original component
         // in order to access its setState() method
         this.gridRef = gridRef;
@@ -234,9 +237,9 @@ class GameManager {
     }
 
     getNextBlock = () => {
-        // TODO: right now we're cycling through the blocks, in the future this will be a double-shufflebag random
+        // TODO: lastBlock should be an array of 3 pieces
 
-        this.lastBlock = (++this.lastBlock) % 7;
+        this.lastBlock = this.randomizer.getNext();
         return BlocksFactory.getBlock(this.lastBlock);
     }
 

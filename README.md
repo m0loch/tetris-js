@@ -68,13 +68,12 @@ https://harddrop.com/wiki/Tetris_Guideline
 
 1. Hold piece mechanic
 2. Up key should perform a hard drop
-3. Fix the randomizer by implementing a shuffle bag
-4. Ghost piece mechanic
-5. The rotations should respect the SRS system: https://harddrop.com/wiki/SRS
-6. Delayed auto-shift: https://harddrop.com/wiki/DAS
+3. Ghost piece mechanic
+4. The rotations should respect the SRS system: https://harddrop.com/wiki/SRS
+5. Delayed auto-shift: https://harddrop.com/wiki/DAS
+6. Next should show the next 3 pieces
 
 ## Work that still needs to be done
 
-1. next piece chosen by a balanced random
-2. add mobile controls:
+1. add mobile controls:
     https://www.dropbox.com/s/g55gwls0h2muqzn/tetris%20guideline%20docs%202009.zip?file_subpath=%2F2009+Tetris+Design+Guideline.pdf (page 12/90)
