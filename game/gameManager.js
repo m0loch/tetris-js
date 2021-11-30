@@ -92,6 +92,21 @@ function rotateMatrix(matrix, clockWise) {
     return result;
 }
 
+/* Middle-function in order to fix I's rotation */
+/* this is also where kicks will should be implemented,
+/* provided that's ever going to happen */
+function rotatePiece(player, clockWise) {
+    player.shape = rotateMatrix(player.shape, false);
+
+    if (player.shape.length === 1) {
+        player.x -= 1;
+        player.y += 1;
+    } else if (player.shape.length === 4) {
+        player.x += 1;
+        player.y -= 1;
+    }
+}
+
 class GameManager {
     constructor(gridRef) {
         this.scoreManager = new ScoreManager();
@@ -278,12 +293,12 @@ class GameManager {
             return;
         }
 
-        this.player.shape = rotateMatrix(this.player.shape, false);
+        rotatePiece(this.player, false);
 
         if (!checkCollision(this.field, this.player)) {
             this.update();
         } else {
-            this.player.shape = rotateMatrix(this.player.shape, true);
+            rotatePiece(this.player, true);
         }
     }
 
@@ -292,12 +307,12 @@ class GameManager {
             return;
         }
 
-        this.player.shape = rotateMatrix(this.player.shape, true);
+        rotatePiece(this.player, true);
 
         if (!checkCollision(this.field, this.player)) {
             this.update();
         } else {
-            this.player.shape = rotateMatrix(this.player.shape, false);
+            rotatePiece(this.player, false);
         }
     }
 
