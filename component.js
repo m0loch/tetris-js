@@ -75,7 +75,7 @@ class Tetris extends Component {
                 <div className="mainColumn">
                     <div className="grid">
                         {divs}
-                        <PausePanel {...this.state} />
+                        <PausePanel {...this.state} onTapCallback={this.game.togglePause} />
                     </div>
                 </div>
 
@@ -149,7 +149,7 @@ class Tetris extends Component {
                     break;
 
                 case " ":
-                    this.game.pauseGame();
+                    this.game.togglePause();
                     handled = true;
                     break;
 
@@ -185,7 +185,7 @@ class Tetris extends Component {
                     break;
 
                 case 32: // Space
-                    this.game.pauseGame();
+                    this.game.togglePause();
                     handled = true;
                     break;
 

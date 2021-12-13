@@ -319,7 +319,7 @@ class GameManager {
         }
     }
 
-    pauseGame = () => {
+    togglePause = () => {
         if (!this.gridRef.state.started || this.gridRef.state.gameOver) {
             this.start();
         } else {
